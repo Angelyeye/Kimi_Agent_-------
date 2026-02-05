@@ -1,0 +1,154 @@
+{
+  "characters": [
+    {
+      "id": "hao_shitu",
+      "name": "郝仕途",
+      "title": "职场精英",
+      "monologue": "在这个城市，只有努力才能出人头地。我相信凭借自己的能力，一定能闯出一片天地。",
+      "avatar": "avatars/hao_shitu.png",
+      "initial_attributes": {
+        "deposit": 158000,
+        "weight": 88,
+        "face": 100,
+        "mood": 95,
+        "health": 55,
+        "luck": 85
+      }
+    },
+    {
+      "id": "hua_beibei",
+      "name": "花贝贝",
+      "title": "时尚博主",
+      "monologue": "生活就是要精致，哪怕负债累累也要保持优雅。颜值即正义，面子最重要！",
+      "avatar": "avatars/hua_beibei.png",
+      "initial_attributes": {
+        "deposit": -32450,
+        "weight": 46,
+        "face": 80,
+        "mood": 40,
+        "health": 45,
+        "luck": 15
+      }
+    },
+    {
+      "id": "fan_tong",
+      "name": "范统",
+      "title": "普通职员",
+      "monologue": "平凡也是一种幸福。我不追求大富大贵，只要安安稳稳过日子就好。",
+      "avatar": "avatars/fan_tong.png",
+      "initial_attributes": {
+        "deposit": 850,
+        "weight": 62,
+        "face": 15,
+        "mood": 80,
+        "health": 30,
+        "luck": 60
+      }
+    },
+    {
+      "id": "gu_jia",
+      "name": "顾嘉",
+      "title": "创业者",
+      "monologue": "失败是成功之母，我会东山再起的！只要还有一口气，就绝不放弃梦想。",
+      "avatar": "avatars/gu_jia.png",
+      "initial_attributes": {
+        "deposit": 66.6,
+        "weight": 54,
+        "face": -50,
+        "mood": 60,
+        "health": 90,
+        "luck": 50
+      }
+    },
+    {
+      "id": "ren_xing",
+      "name": "任兴",
+      "title": "自由职业者",
+      "monologue": "随心所欲，活出自我。人生苦短，及时行乐才是真理！",
+      "avatar": "avatars/ren_xing.png",
+      "initial_attributes": {
+        "deposit": 5000,
+        "weight": 50,
+        "face": 0,
+        "mood": 100,
+        "health": 85,
+        "luck": 20
+      }
+    },
+    {
+      "id": "hao_youqian",
+      "name": "郝有乾",
+      "title": "企业家",
+      "monologue": "有钱能使鬼推磨，但我更有梦想。财富只是手段，实现价值才是目的。",
+      "avatar": "avatars/hao_youqian.png",
+      "initial_attributes": {
+        "deposit": 12800000,
+        "weight": 92,
+        "face": 95,
+        "mood": 98,
+        "health": 60,
+        "luck": 90
+      }
+    },
+    {
+      "id": "bi_chenglong",
+      "name": "毕成龙",
+      "title": "演员",
+      "monologue": "成名之路充满荆棘，但我永不放弃。每一个角色都是一次新生！",
+      "avatar": "avatars/bi_chenglong.png",
+      "initial_attributes": {
+        "deposit": 450000,
+        "weight": 52,
+        "face": 60,
+        "mood": 15,
+        "health": 40,
+        "luck": 30
+      }
+    },
+    {
+      "id": "zhen_yangqi",
+      "name": "甄洋气",
+      "title": "海归精英",
+      "monologue": "国外的经历让我与众不同。我要把国际化的视野带回家乡，创造不一样的未来。",
+      "avatar": "avatars/zhen_yangqi.png",
+      "initial_attributes": {
+        "deposit": -180000,
+        "weight": 65,
+        "face": 85,
+        "mood": 50,
+        "health": 75,
+        "luck": 40
+      }
+    },
+    {
+      "id": "hu_sanwan",
+      "name": "胡三万",
+      "title": "赌徒",
+      "monologue": "人生就是一场豪赌，我命由我不由天！运气来了，挡都挡不住！",
+      "avatar": "avatars/hu_sanwan.png",
+      "initial_attributes": {
+        "deposit": 20000,
+        "weight": 58,
+        "face": 70,
+        "mood": 90,
+        "health": 35,
+        "luck": 99
+      }
+    },
+    {
+      "id": "wu_renai",
+      "name": "吴仁爱",
+      "title": "慈善家",
+      "monologue": "帮助他人是我最大的快乐。即使被误解，我也会坚持走自己的路。",
+      "avatar": "avatars/wu_renai.png",
+      "initial_attributes": {
+        "deposit": 280000,
+        "weight": 56,
+        "face": -100,
+        "mood": 25,
+        "health": 65,
+        "luck": 5
+      }
+    }
+  ]
+}

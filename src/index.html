@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>春节模拟器 - Spring Festival Simulator</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- 背景装饰元素 -->
+    <div class="bg-decoration">
+        <div class="lantern lantern-left"></div>
+        <div class="lantern lantern-right"></div>
+        <div class="cloud cloud-1"></div>
+        <div class="cloud cloud-2"></div>
+        <div class="cloud cloud-3"></div>
+        <div class="firework firework-1"></div>
+        <div class="firework firework-2"></div>
+        <div class="firework firework-3"></div>
+    </div>
+
+    <!-- 1. 开始界面 -->
+    <div id="start-screen" class="screen active">
+        <div class="start-container">
+            <div class="logo-section">
+                <div class="fu-character">福</div>
+                <h1 class="game-title">
+                    <span class="title-main">春节模拟器</span>
+                    <span class="title-sub">Spring Festival Simulator</span>
+                </h1>
+                <p class="game-slogan">9天假期，你的选择决定命运</p>
+            </div>
+            <div class="menu-buttons">
+                <button class="btn btn-primary btn-glow" onclick="game.toCharacterSelect()">
+                    <span class="btn-icon">🎮</span>
+                    <span class="btn-text">开始游戏</span>
+                </button>
+                <button class="btn btn-secondary" onclick="game.toLoadGame()">
+                    <span class="btn-icon">📁</span>
+                    <span class="btn-text">继续游戏</span>
+                </button>
+                <button class="btn btn-secondary" onclick="game.showSettings()">
+                    <span class="btn-icon">⚙️</span>
+                    <span class="btn-text">设置</span>
+                </button>
+            </div>
+            <div class="version-info">v1.0.0 | 乙巳蛇年</div>
+        </div>
+    </div>
+
+    <!-- 2. 角色选择界面 -->
+    <div id="character-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="game.toStartScreen()">← 返回</button>
+            <h2 class="screen-title">选择你的身份</h2>
+            <div class="placeholder"></div>
+        </div>
+        <div class="character-container">
+            <div class="character-grid" id="character-grid">
+                <!-- 角色卡片将通过JS动态生成 -->
+            </div>
+        </div>
+        <div class="character-preview" id="character-preview">
+            <div class="preview-content">
+                <div class="preview-avatar" id="preview-avatar">👨‍💼</div>
+                <div class="preview-info">
+                    <h3 id="preview-name">请选择角色</h3>
+                    <p id="preview-desc">点击上方卡片查看角色详情</p>
+                    <div class="preview-stats" id="preview-stats">
+                        <!-- 初始属性 -->
+                    </div>
+                </div>
+                <button class="btn btn-primary btn-confirm" id="confirm-btn" onclick="game.confirmCharacter()" disabled>
+                    确认选择
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3. 主游戏界面 -->
+    <div id="game-screen" class="screen">
+        <!-- 顶部状态栏 -->
+        <div class="game-header">
+            <div class="day-info">
+                <div class="day-badge">
+                    <span class="day-label">第</span>
+                    <span class="day-number" id="day-number">1</span>
+                    <span class="day-label">天</span>
+                </div>
+                <div class="time-period" id="time-period">早晨</div>
+            </div>
+            <div class="header-actions">
+                <button class="btn-icon-only" onclick="game.saveGame()" title="存档">💾</button>
+                <button class="btn-icon-only" onclick="game.toLoadGame()" title="读档">📂</button>
+                <button class="btn-icon-only" onclick="game.toStartScreen()" title="退出">🏠</button>
+            </div>
+        </div>
+
+        <!-- 属性面板 -->
+        <div class="stats-panel">
+            <div class="stat-item" data-stat="money">
+                <div class="stat-icon">💰</div>
+                <div class="stat-info">
+                    <span class="stat-name">存款</span>
+                    <span class="stat-value" id="stat-money">5000</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-money" style="width: 50%"></div>
+                </div>
+            </div>
+            <div class="stat-item" data-stat="weight">
+                <div class="stat-icon">⚖️</div>
+                <div class="stat-info">
+                    <span class="stat-name">体重</span>
+                    <span class="stat-value" id="stat-weight">65</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-weight" style="width: 65%"></div>
+                </div>
+            </div>
+            <div class="stat-item" data-stat="face">
+                <div class="stat-icon">👑</div>
+                <div class="stat-info">
+                    <span class="stat-name">面子</span>
+                    <span class="stat-value" id="stat-face">50</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-face" style="width: 50%"></div>
+                </div>
+            </div>
+            <div class="stat-item" data-stat="mood">
+                <div class="stat-icon">😊</div>
+                <div class="stat-info">
+                    <span class="stat-name">心情</span>
+                    <span class="stat-value" id="stat-mood">70</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-mood" style="width: 70%"></div>
+                </div>
+            </div>
+            <div class="stat-item" data-stat="health">
+                <div class="stat-icon">❤️</div>
+                <div class="stat-info">
+                    <span class="stat-name">健康</span>
+                    <span class="stat-value" id="stat-health">80</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-health" style="width: 80%"></div>
+                </div>
+            </div>
+            <div class="stat-item" data-stat="luck">
+                <div class="stat-icon">🍀</div>
+                <div class="stat-info">
+                    <span class="stat-name">运气</span>
+                    <span class="stat-value" id="stat-luck">50</span>
+                </div>
+                <div class="stat-bar">
+                    <div class="stat-fill" id="bar-luck" style="width: 50%"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 事件展示区 -->
+        <div class="event-display">
+            <div class="event-scene" id="event-scene">
+                <div class="scene-image" id="scene-image">🏠</div>
+                <div class="scene-location" id="scene-location">家中</div>
+            </div>
+            <div class="event-content">
+                <div class="event-npc" id="event-npc">
+                    <div class="npc-avatar" id="npc-avatar">👵</div>
+                    <div class="npc-name" id="npc-name">妈妈</div>
+                </div>
+                <div class="event-dialogue">
+                    <div class="dialogue-bubble" id="dialogue-text">
+                        儿子，起床了！今天大年初一，快起来给长辈拜年！
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 选项按钮区 -->
+        <div class="choices-panel" id="choices-panel">
+            <button class="choice-btn" onclick="game.makeChoice(0)">
+                <span class="choice-text">马上起床，精神饱满地去拜年</span>
+                <span class="choice-effect">心情+5 面子+10</span>
+            </button>
+            <button class="choice-btn" onclick="game.makeChoice(1)">
+                <span class="choice-text">赖床5分钟再说...</span>
+                <span class="choice-effect">心情+10 健康+5 面子-5</span>
+            </button>
+            <button class="choice-btn" onclick="game.makeChoice(2)">
+                <span class="choice-text">假装没听见继续睡</span>
+                <span class="choice-effect">心情+15 面子-15 健康-5</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- 4. 结局界面 -->
+    <div id="ending-screen" class="screen">
+        <div class="ending-container">
+            <div class="ending-header">
+                <div class="ending-icon" id="ending-icon">🎊</div>
+                <h2 class="ending-title" id="ending-title">春节圆满结束</h2>
+                <p class="ending-subtitle" id="ending-subtitle">你度过了一个充实的新年假期</p>
+            </div>
+            <div class="ending-summary">
+                <div class="summary-card">
+                    <h3>最终属性</h3>
+                    <div class="final-stats" id="final-stats">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+                <div class="summary-card">
+                    <h3>假期回顾</h3>
+                    <div class="ending-story" id="ending-story">
+                        <!-- 动态生成 -->
+                    </div>
+                </div>
+            </div>
+            <div class="ending-actions">
+                <button class="btn btn-primary" onclick="game.restartGame()">
+                    <span class="btn-icon">🔄</span>
+                    <span class="btn-text">重新开始</span>
+                </button>
+                <button class="btn btn-secondary" onclick="game.toStartScreen()">
+                    <span class="btn-icon">🏠</span>
+                    <span class="btn-text">返回主页</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 5. 存档界面 -->
+    <div id="save-screen" class="screen">
+        <div class="screen-header">
+            <button class="btn-back" onclick="game.goBack()">← 返回</button>
+            <h2 class="screen-title">游戏存档</h2>
+            <div class="placeholder"></div>
+        </div>
+        <div class="save-container">
+            <div class="save-slots" id="save-slots">
+                <!-- 动态生成存档槽 -->
+            </div>
+        </div>
+    </div>
+
+    <!-- 设置弹窗 -->
+    <div id="settings-modal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>设置</h3>
+                <button class="btn-close" onclick="game.closeSettings()">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="setting-item">
+                    <label>背景音乐</label>
+                    <input type="range" min="0" max="100" value="50" class="slider">
+                </div>
+                <div class="setting-item">
+                    <label>音效</label>
+                    <input type="range" min="0" max="100" value="70" class="slider">
+                </div>
+                <div class="setting-item">
+                    <label>动画效果</label>
+                    <label class="toggle">
+                        <input type="checkbox" checked>
+                        <span class="toggle-slider"></span>
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- 通知提示 -->
+    <div id="notification" class="notification"></div>
+
+    <script src="game.js"></script>
+</body>
+</html>
